@@ -3,18 +3,17 @@ import './App.css';
 
 const NAV_LINKS = [
   { label: '서비스', href: '#services' },
-  { label: '솔루션', href: '#solutions' },
-  { label: '기술', href: '#tech' },
   { label: '고객사례', href: '#cases' },
   { label: '문의', href: '#contact' },
+  { label: '개인정보처리방침', href: '#privacy' },
 ];
 
 const SERVICES = [
   {
     icon: '⬡',
-    title: '데이터 파이프라인',
-    desc: '다양한 소스의 데이터를 실시간으로 수집·정제·전달하는 자동화 파이프라인을 구축합니다.',
-    tag: 'Pipeline',
+    title: '서비스 통합 구현',
+    desc: '여러 SaaS·레거시 시스템을 하나의 흐름으로 연결하는 엔드투엔드 서비스 통합을 제공합니다.',
+    tag: 'Integration',
   },
   {
     icon: '◈',
@@ -29,50 +28,33 @@ const SERVICES = [
     tag: 'Analytics',
   },
   {
-    icon: '⬢',
-    title: '데이터 보안',
-    desc: '엔드-투-엔드 암호화와 접근 제어로 데이터 전송의 보안을 완벽하게 보장합니다.',
-    tag: 'Security',
+    icon: '₩',
+    title: '결제 API 서비스',
+    desc: '국내외 PG사와 연동되는 통합 결제 API로 카드·계좌이체·간편결제를 한 번에 지원합니다.',
+    tag: 'Payment',
   },
 ];
 
 const STATS = [
-  { value: '99.99%', label: '서비스 가동률' },
-  { value: '2.3ms', label: '평균 응답속도' },
-  { value: '500+', label: '기업 고객사' },
-  { value: '10B+', label: '일일 데이터 처리' },
+  { value: '안정적', label: '서비스 운영' },
+  { value: '신속한', label: '요청 처리' },
+  { value: '대량 처리', label: '데이터 흐름 지원' },
 ];
 
-const SOLUTIONS = [
-  { name: 'AWS', category: 'Cloud' },
-  { name: 'Azure', category: 'Cloud' },
-  { name: 'GCP', category: 'Cloud' },
-  { name: 'Kafka', category: 'Streaming' },
-  { name: 'Spark', category: 'Processing' },
-  { name: 'Airflow', category: 'Orchestration' },
-  { name: 'dbt', category: 'Transform' },
-  { name: 'Snowflake', category: 'Warehouse' },
-  { name: 'Databricks', category: 'ML Platform' },
-];
+const SOLUTIONS = [];
 
 const CASES = [
   {
     industry: '금융',
     title: '실시간 리스크 모니터링',
-    desc: '글로벌 금융사의 거래 데이터를 실시간 분석하여 이상 거래를 0.1초 내 탐지',
-    metric: '탐지 속도 94% 향상',
+    desc: '금융사의 거래 데이터를 근실시간으로 분석하여 이상 거래를 빠르게 탐지할 수 있도록 지원',
+    metric: '이상 징후 대응 속도 향상',
   },
   {
     industry: '커머스',
     title: '개인화 추천 엔진',
-    desc: '구매 패턴 데이터를 통합 분석하여 전환율을 극대화하는 실시간 추천 시스템 구축',
-    metric: '전환율 3.2배 증가',
-  },
-  {
-    industry: '제조',
-    title: '스마트 팩토리 IIoT',
-    desc: '공장 내 수천 개 센서 데이터를 통합 수집·분석하여 설비 고장을 사전 예측',
-    metric: '다운타임 78% 감소',
+    desc: '구매 패턴 데이터를 통합 분석하여 개인화 추천 품질을 높이는 추천 환경을 제공합니다',
+    metric: '전환율 개선에 기여',
   },
 ];
 
@@ -110,7 +92,7 @@ function Navbar() {
       <div className="nav-inner">
         <a className="nav-logo" href="#top" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
           <span className="logo-mark">DBH</span>
-          <span className="logo-text">데이터 브릿지 허브</span>
+          <span className="logo-text">디브릿지허브</span>
         </a>
         <ul className="nav-links">
           {NAV_LINKS.map(l => (
@@ -146,7 +128,7 @@ function Hero() {
       <div className={`hero-content ${inView ? 'visible' : ''}`}>
         <div className="hero-badge">Enterprise Data Platform</div>
         <h1 className="hero-title">
-          데이터의 흐름을<br />
+          서비스의 흐름을<br />
           <span className="hero-accent">하나로 연결</span>합니다
         </h1>
         <p className="hero-desc">
@@ -285,29 +267,6 @@ function Services() {
   );
 }
 
-function Solutions() {
-  const [ref, inView] = useInView();
-  return (
-    <section className="solutions-section" id="solutions" ref={ref}>
-      <div className="section-inner">
-        <div className={`section-header ${inView ? 'visible' : ''}`}>
-          <span className="section-tag">INTEGRATIONS</span>
-          <h2 className="section-title">기술 스택 통합</h2>
-          <p className="section-desc">주요 클라우드 및 데이터 플랫폼과 즉시 연동 가능합니다</p>
-        </div>
-        <div className="solutions-grid">
-          {SOLUTIONS.map((s, i) => (
-            <div key={i} className={`solution-chip ${inView ? 'visible' : ''}`} style={{ animationDelay: `${i * 0.07}s` }}>
-              <span className="chip-name">{s.name}</span>
-              <span className="chip-cat">{s.category}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function Tech() {
   const [ref, inView] = useInView();
   return (
@@ -318,10 +277,9 @@ function Tech() {
           <h2 className="section-title">엔터프라이즈급<br />인프라 보안</h2>
           <ul className="tech-list">
             {[
-              ['AES-256 암호화', '모든 데이터 전송 및 저장 시 군사급 암호화 적용'],
-              ['SOC 2 Type II 인증', '국제 보안 표준 준수 및 정기 감사 완료'],
-              ['99.99% SLA 보장', '24/7 모니터링과 자동 복구로 다운타임 최소화'],
-              ['멀티 리전 DR', '재해복구 자동화로 데이터 손실 없는 비즈니스 연속성'],
+              ['AES-256 암호화', '보안이 필요한 구간의 데이터 전송 및 저장 시 강력한 암호화를 적용할 수 있는 구조를 지향합니다.'],
+              ['안정적인 서비스 운영', '상시 모니터링과 자동 복구 체계를 설계하여 다운타임을 줄이도록 노력합니다.'],
+              ['재해복구 및 백업', '중요 데이터에 대해 복구 전략과 백업 정책을 수립할 수 있는 환경을 제공합니다.'],
             ].map(([title, desc], i) => (
               <li key={i} className={`tech-item ${inView ? 'visible' : ''}`} style={{ animationDelay: `${0.2 + i * 0.1}s` }}>
                 <span className="tech-dot" />
@@ -357,7 +315,7 @@ function Cases() {
         <div className={`section-header ${inView ? 'visible' : ''}`}>
           <span className="section-tag">CASE STUDIES</span>
           <h2 className="section-title">고객 성공 사례</h2>
-          <p className="section-desc">다양한 산업에서 입증된 데이터 브릿지 허브의 성과</p>
+          <p className="section-desc">다양한 산업에서 입증된 디브릿지허브의 성과</p>
         </div>
         <div className="cases-grid">
           {CASES.map((c, i) => (
@@ -368,6 +326,78 @@ function Cases() {
               <div className="case-metric">{c.metric}</div>
             </div>
           ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Privacy() {
+  const [ref, inView] = useInView();
+  return (
+    <section className="privacy-section" id="privacy" ref={ref}>
+      <div className="section-inner">
+        <div className={`section-header ${inView ? 'visible' : ''}`}>
+          <span className="section-tag">PRIVACY</span>
+          <h2 className="section-title">개인정보 처리방침</h2>
+          <p className="section-desc">
+            디브릿지허브(이하 &quot;회사&quot;)는 이용자의 개인정보를 소중하게 생각하며, 관련 법령을 준수하기 위해 노력합니다.
+          </p>
+        </div>
+        <div className={`privacy-content ${inView ? 'visible' : ''}`}>
+          <h3>1. 수집하는 개인정보의 항목 및 수집 방법</h3>
+          <p>
+            회사는 문의 및 상담을 위해 아래와 같은 정보를 제공받을 수 있습니다. 현재 웹사이트의 문의 양식은 브라우저 화면 내에서만 동작하며, 별도의 서버로 자동 저장 또는 전송되는 기능은 제공하지 않습니다.
+          </p>
+          <ul>
+            <li>필수 항목: 담당자명, 회사명, 이메일 주소</li>
+            <li>선택 항목: 문의 내용</li>
+          </ul>
+
+          <h3>2. 개인정보의 수집 및 이용 목적</h3>
+          <p>회사는 이용자가 별도의 연락 수단(이메일, 전화 등)을 통해 정보를 전달하는 경우, 이를 다음의 목적 범위 내에서만 이용합니다.</p>
+          <ul>
+            <li>서비스 및 솔루션 관련 문의에 대한 상담 및 회신</li>
+            <li>서비스 제안, 도입 검토를 위한 커뮤니케이션</li>
+            <li>계약 체결 및 이행을 위한 연락</li>
+          </ul>
+
+          <h3>3. 개인정보의 보유 및 이용 기간</h3>
+          <p>
+            회사는 이용자의 개인정보를 이용 목적 달성을 위해 필요한 기간 동안만 보유·이용하며, 관련 법령에서 별도의 보존 기간을 정하고 있는 경우에는 그에 따릅니다. 구체적인 보유 기간은 개별 계약 또는 안내를 통해 별도로 고지할 수 있습니다.
+          </p>
+
+          <h3>4. 개인정보의 제3자 제공 및 처리 위탁</h3>
+          <p>
+            회사는 이용자의 동의 없이 개인정보를 외부에 제공하지 않습니다. 향후 서비스 제공을 위해 이메일 발송·시스템 운영 등을 외부 전문 업체에 위탁할 필요가 있는 경우, 관련 법령에 따른 동의 절차 및 안전한 관리 조치를 마련한 뒤 위탁 여부와 내용을 안내하겠습니다.
+          </p>
+
+          <h3>5. 이용자의 권리와 행사 방법</h3>
+          <p>
+            이용자는 언제든지 자신의 개인정보에 대한 열람, 정정, 삭제, 처리정지를 요청할 수 있습니다. 관련 요청은 아래 연락처로 문의해 주시기 바랍니다.
+          </p>
+          <ul>
+            <li>이메일: apporty@gmail.com</li>
+            <li>전화: 010-5029-9455</li>
+          </ul>
+
+          <h3>6. 개인정보의 안전성 확보 조치</h3>
+          <p>회사는 개인정보의 안전한 처리를 위하여 합리적인 보호 조치를 마련하기 위해 노력합니다.</p>
+          <ul>
+            <li>접근 권한 관리 및 최소 권한 원칙 적용</li>
+            <li>암호화 및 네트워크 보안 조치</li>
+            <li>정기적인 보안 점검 및 내부 관리 계획 수립</li>
+          </ul>
+
+          <h3>7. 개인정보 처리방침의 변경</h3>
+          <p>
+            본 개인정보 처리방침은 관련 법령, 회사 정책, 서비스 내용의 변경에 따라 수정될 수 있으며, 중요한 변경 사항이 있을 경우 홈페이지를 통해 공지합니다.
+          </p>
+
+          <p className="privacy-meta">
+            시행일: 2025-01-01<br />
+            최종 수정일: 2025-01-01
+          </p>
         </div>
       </div>
     </section>
@@ -431,14 +461,14 @@ function Contact() {
               <span className="info-icon">📧</span>
               <div>
                 <strong>이메일</strong>
-                <p>contact@databridgehub.kr</p>
+                <p>apporty@gmail.com</p>
               </div>
             </div>
             <div className="info-item">
               <span className="info-icon">📞</span>
               <div>
                 <strong>전화</strong>
-                <p>02-1234-5678</p>
+                <p>010-5029-9455</p>
               </div>
             </div>
             <div className="info-item">
@@ -461,37 +491,33 @@ function Footer() {
       <div className="footer-inner">
         <div className="footer-brand">
           <span className="logo-mark">DBH</span>
-          <span className="logo-text">데이터 브릿지 허브</span>
-          <p>데이터의 흐름을 연결하는 엔터프라이즈 플랫폼</p>
+          <span className="logo-text">디브릿지허브</span>
+          <p>서비스의 흐름을 연결하는 엔터프라이즈 플랫폼</p>
         </div>
         <div className="footer-links">
           <div className="footer-col">
             <strong>서비스</strong>
-            <a href="#services">데이터 파이프라인</a>
+            <a href="#services">서비스 통합 구현</a>
             <a href="#services">API 게이트웨이</a>
             <a href="#services">실시간 분석</a>
-            <a href="#services">데이터 보안</a>
+            <a href="#services">결제 API 서비스</a>
           </div>
           <div className="footer-col">
             <strong>회사</strong>
             <a href="#cases">고객 사례</a>
             <a href="#tech">기술 소개</a>
-            <a href="#contact">파트너십</a>
-            <a href="#contact">채용</a>
           </div>
           <div className="footer-col">
             <strong>지원</strong>
             <a href="#contact">문의하기</a>
             <a href="#contact">기술 지원</a>
-            <a href="#contact">문서 센터</a>
-            <a href="#contact">커뮤니티</a>
           </div>
         </div>
       </div>
       <div className="footer-bottom">
-        <p>© 2025 데이터 브릿지 허브. All rights reserved.</p>
+        <p>© 2025 디브릿지허브. All rights reserved.</p>
         <div className="footer-legal">
-          <a href="#top">개인정보처리방침</a>
+          <a href="#privacy">개인정보처리방침</a>
           <a href="#top">이용약관</a>
         </div>
       </div>
@@ -500,15 +526,27 @@ function Footer() {
 }
 
 export default function App() {
+  useEffect(() => {
+    if (window.location.hash) {
+      const target = document.querySelector(window.location.hash);
+      if (target) {
+        // 초기 렌더가 끝난 뒤 스크롤되도록 약간 지연
+        setTimeout(() => {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }, 0);
+      }
+    }
+  }, []);
+
   return (
     <div className="app">
       <Navbar />
       <Hero />
       <Stats />
       <Services />
-      <Solutions />
       <Tech />
       <Cases />
+      <Privacy />
       <Contact />
       <Footer />
     </div>

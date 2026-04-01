@@ -774,3 +774,33 @@ body {
 .footer-legal { display: flex; gap: 1.25rem; }
 .footer-legal a { color: var(--text-dim); font-size: 0.8rem; text-decoration: none; }
 .footer-legal a:hover { color: var(--text-muted); }
+
+/* ─── Privacy ─── */
+.privacy-section {
+  padding: 4rem 0 5rem;
+}
+.privacy-content {
+  max-width: 800px;
+  margin: 0 auto;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+.privacy-content h3 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  margin: 1.5rem 0 0.5rem;
+  color: var(--text);
+}
+.privacy-content ul {
+  padding-left: 1.2rem;
+  margin-bottom: 0.75rem;
+}
+.privacy-content li {
+  margin-bottom: 0.25rem;
+}
+.privacy-meta {
+  margin-top: 1.5rem;
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
