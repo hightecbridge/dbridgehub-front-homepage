@@ -368,31 +368,56 @@ function Terms() {
         <div className={`terms-content ${inView ? 'visible' : ''}`}>
           <h3>제1조 (목적)</h3>
           <p>
-            본 약관은 디브릿지허브(이하 &quot;회사&quot;)가 제공하는 서비스 이용과 관련하여 회사와 이용자의 권리, 의무 및 책임사항을 규정함을 목적으로 합니다.
+            본 약관은 디브릿지허브(이하 “회사”)가 제공하는 서비스의 이용과 관련하여 회사와 이용자 간의 권리, 의무 및 책임사항을 규정함을 목적으로 합니다.
           </p>
 
-          <h3>제2조 (서비스 내용)</h3>
-          <p>회사는 학원 관리 시스템 및 관련 서비스를 제공합니다.</p>
-
-          <h3>제3조 (회원가입 및 관리)</h3>
-          <p>이용자는 회사가 정한 절차에 따라 회원가입을 할 수 있으며, 정보는 사실에 기반해야 합니다.</p>
-
-          <h3>제4조 (서비스 이용)</h3>
-          <p>회사는 안정적인 서비스 제공을 위해 노력하며, 불가피한 경우 서비스가 중단될 수 있습니다.</p>
-
-          <h3>제5조 (결제 및 환불)</h3>
-          <p>서비스 이용에 따른 결제 및 환불 정책은 별도로 안내합니다.</p>
-
-          <h3>제6조 (이용자의 의무)</h3>
-          <p>이용자는 관련 법령 및 본 약관을 준수해야 하며, 서비스 운영을 방해하는 행위를 해서는 안 됩니다.</p>
-
-          <h3>제7조 (책임의 제한)</h3>
-          <p>회사는 천재지변 등 불가항력으로 발생한 손해에 대해 책임을 지지 않습니다.</p>
-
-          <h3>제8조 (분쟁 해결)</h3>
+          <h3>제2조 (정의)</h3>
           <p>
-            본 약관과 관련된 분쟁은 대한민국 법을 따르며, 관할 법원은 회사 소재지를 기준으로 합니다.
+            “서비스”란 회사가 제공하는 데이터 관리, 학원관리 및 관련 온라인 서비스를 의미합니다.<br />
+            “이용자”란 본 약관에 따라 회사가 제공하는 서비스를 이용하는 회원 및 비회원을 말합니다.
           </p>
+
+          <h3>제3조 (약관의 효력 및 변경)</h3>
+          <p>
+            본 약관은 서비스 화면에 게시하거나 기타 방법으로 이용자에게 공지함으로써 효력이 발생합니다.<br />
+            회사는 관련 법령을 위반하지 않는 범위에서 약관을 변경할 수 있습니다.
+          </p>
+
+          <h3>제4조 (서비스의 제공)</h3>
+          <p>회사는 다음과 같은 서비스를 제공합니다.</p>
+          <ul>
+            <li>학원 관리 시스템 제공</li>
+            <li>데이터 관리 및 분석 서비스</li>
+            <li>기타 회사가 정하는 서비스</li>
+          </ul>
+
+          <h3>제5조 (서비스 이용 및 제한)</h3>
+          <p>
+            이용자는 관계 법령 및 본 약관을 준수하여야 하며, 서비스의 정상적인 운영을 방해하는 행위를 해서는 안 됩니다.
+          </p>
+
+          <h3>제6조 (결제 및 이용요금)</h3>
+          <p>
+            서비스 이용에 대한 요금은 회사가 정한 정책에 따릅니다.<br />
+            결제는 카드, 계좌이체 등 회사가 제공하는 방법을 통해 이루어집니다.
+          </p>
+
+          <h3>제7조 (환불 및 청약철회)</h3>
+          <p>환불 및 청약철회는 회사의 환불정책에 따릅니다.</p>
+
+          <h3>제8조 (서비스 중단)</h3>
+          <p>회사는 시스템 점검, 장애, 기타 불가피한 사유로 서비스 제공을 일시적으로 중단할 수 있습니다.</p>
+
+          <h3>제9조 (면책조항)</h3>
+          <p>회사는 천재지변, 불가항력적 사유로 서비스를 제공할 수 없는 경우 책임을 지지 않습니다.</p>
+
+          <h3>제10조 (준거법 및 관할)</h3>
+          <p>
+            본 약관은 대한민국 법률에 따라 해석되며, 분쟁 발생 시 회사 소재지를 관할하는 법원을 관할 법원으로 합니다.
+          </p>
+
+          <h3>부칙</h3>
+          <p>본 약관은 2026년 4월 2일부터 시행합니다.</p>
         </div>
       </div>
     </section>
@@ -491,7 +516,7 @@ function Privacy() {
           </p>
 
           <p className="privacy-meta">
-            시행일: 2025-01-01<br />
+            시행일: 2026-04-02<br />
             최종 수정일: 2026-04-02
           </p>
         </div>
@@ -584,37 +609,12 @@ function Contact() {
 function Footer() {
   return (
     <footer className="footer">
-      <div className="footer-inner">
-        <div className="footer-brand">
-          <span className="logo-mark">DBH</span>
-          <span className="logo-text">디브릿지허브</span>
-          <p>서비스의 흐름을 연결하는 엔터프라이즈 플랫폼</p>
-        </div>
-        <div className="footer-links">
-          <div className="footer-col">
-            <strong>서비스</strong>
-            <Link to="/#services">서비스 통합 구현</Link>
-            <Link to="/#services">API 게이트웨이</Link>
-            <Link to="/#services">실시간 분석</Link>
-            <Link to="/#services">결제 API 서비스</Link>
-          </div>
-          <div className="footer-col">
-            <strong>회사</strong>
-            <Link to="/#cases">고객 사례</Link>
-            <Link to="/#tech">기술 소개</Link>
-          </div>
-          <div className="footer-col">
-            <strong>지원</strong>
-            <Link to="/#contact">문의하기</Link>
-            <Link to="/#contact">기술 지원</Link>
-          </div>
-        </div>
-      </div>
       <div className="footer-bottom">
-        <p>© 2025 디브릿지허브. All rights reserved.</p>
+        <p>© 2026 디브릿지허브. All rights reserved.</p>
         <div className="footer-legal">
           <Link to="/privacy">개인정보처리방침</Link>
           <Link to="/terms">이용약관</Link>
+          <Link to="/refund">환불정책</Link>
         </div>
         <div className="footer-company">
           <div className="footer-company-row footer-company-row--emph"><strong>상호명</strong>: 디브릿지허브</div>
@@ -687,6 +687,58 @@ function TermsPage() {
   );
 }
 
+function Refund() {
+  const [ref, inView] = useInView();
+  return (
+    <section className="refund-section" id="refund" ref={ref}>
+      <div className="section-inner">
+        <div className={`section-header ${inView ? 'visible' : ''}`}>
+          <span className="section-tag">REFUND</span>
+          <h2 className="section-title">환불 정책</h2>
+          <p className="section-desc">
+            서비스 이용과 관련된 환불 절차 및 규정을 안내합니다.
+          </p>
+        </div>
+        <div className={`refund-content ${inView ? 'visible' : ''}`}>
+          <h1>환불 정책</h1>
+          <p>회사는 전자상거래 등에서의 소비자 보호에 관한 법률을 준수합니다.</p>
+
+          <h3>1. 결제 방법</h3>
+          <ul>
+            <li>신용카드, 계좌이체 등</li>
+          </ul>
+
+          <h3>2. 환불 규정</h3>
+          <ul>
+            <li>서비스 시작 전: 전액 환불 가능</li>
+            <li>서비스 이용 후: 이용분 제외 후 환불</li>
+          </ul>
+
+          <h3>3. 환불 절차</h3>
+          <ul>
+            <li>고객센터 이메일을 통해 요청</li>
+            <li>확인 후 7일 이내 처리</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function RefundPage() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  return (
+    <div className="app">
+      <Navbar />
+      <Refund />
+      <Footer />
+    </div>
+  );
+}
+
 export default function App() {
   const location = useLocation();
   if (location.pathname === '/' && location.hash === '#privacy') {
@@ -701,6 +753,7 @@ export default function App() {
       <Route path="/" element={<HomePage />} />
       <Route path="/privacy" element={<PrivacyPage />} />
       <Route path="/terms" element={<TermsPage />} />
+      <Route path="/refund" element={<RefundPage />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
