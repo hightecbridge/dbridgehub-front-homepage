@@ -5,7 +5,6 @@ import './App.css';
 const NAV_LINKS = [
   { label: '서비스', hash: 'services' },
   { label: '고객사례', hash: 'cases' },
-  { label: '문의', hash: 'contact' },
   { label: '개인정보처리방침', path: '/privacy' },
 ];
 
@@ -354,6 +353,52 @@ function Cases() {
   );
 }
 
+function Terms() {
+  const [ref, inView] = useInView();
+  return (
+    <section className="terms-section" id="terms" ref={ref}>
+      <div className="section-inner">
+        <div className={`section-header ${inView ? 'visible' : ''}`}>
+          <span className="section-tag">TERMS</span>
+          <h2 className="section-title">이용약관</h2>
+          <p className="section-desc">
+            디브릿지허브가 제공하는 서비스의 이용 조건을 안내합니다.
+          </p>
+        </div>
+        <div className={`terms-content ${inView ? 'visible' : ''}`}>
+          <h3>제1조 (목적)</h3>
+          <p>
+            본 약관은 디브릿지허브(이하 &quot;회사&quot;)가 제공하는 서비스 이용과 관련하여 회사와 이용자의 권리, 의무 및 책임사항을 규정함을 목적으로 합니다.
+          </p>
+
+          <h3>제2조 (서비스 내용)</h3>
+          <p>회사는 학원 관리 시스템 및 관련 서비스를 제공합니다.</p>
+
+          <h3>제3조 (회원가입 및 관리)</h3>
+          <p>이용자는 회사가 정한 절차에 따라 회원가입을 할 수 있으며, 정보는 사실에 기반해야 합니다.</p>
+
+          <h3>제4조 (서비스 이용)</h3>
+          <p>회사는 안정적인 서비스 제공을 위해 노력하며, 불가피한 경우 서비스가 중단될 수 있습니다.</p>
+
+          <h3>제5조 (결제 및 환불)</h3>
+          <p>서비스 이용에 따른 결제 및 환불 정책은 별도로 안내합니다.</p>
+
+          <h3>제6조 (이용자의 의무)</h3>
+          <p>이용자는 관련 법령 및 본 약관을 준수해야 하며, 서비스 운영을 방해하는 행위를 해서는 안 됩니다.</p>
+
+          <h3>제7조 (책임의 제한)</h3>
+          <p>회사는 천재지변 등 불가항력으로 발생한 손해에 대해 책임을 지지 않습니다.</p>
+
+          <h3>제8조 (분쟁 해결)</h3>
+          <p>
+            본 약관과 관련된 분쟁은 대한민국 법을 따르며, 관할 법원은 회사 소재지를 기준으로 합니다.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Privacy() {
   const [ref, inView] = useInView();
   return (
@@ -569,7 +614,15 @@ function Footer() {
         <p>© 2025 디브릿지허브. All rights reserved.</p>
         <div className="footer-legal">
           <Link to="/privacy">개인정보처리방침</Link>
-          <Link to="/#top">이용약관</Link>
+          <Link to="/terms">이용약관</Link>
+        </div>
+        <div className="footer-company">
+          <div className="footer-company-row footer-company-row--emph"><strong>상호명</strong>: 디브릿지허브</div>
+          <div className="footer-company-row footer-company-row--emph"><strong>대표자</strong>: 장경수</div>
+          <div className="footer-company-row footer-company-row--emph"><strong>사업자등록번호</strong>: 599-26-02056</div>
+          <div className="footer-company-row footer-company-row--emph"><strong>주소</strong>: 서울특별시 동대문구 장안벗꽃로5길, 19 103동 2107호</div>
+          <div className="footer-company-row footer-company-row--emph"><strong>이메일</strong>: apporty@gmail.com</div>
+          <div className="footer-company-row footer-company-row--emph"><strong>전화번호</strong>: 010-5029-9455</div>
         </div>
       </div>
     </footer>
@@ -620,16 +673,34 @@ function PrivacyPage() {
   );
 }
 
+function TermsPage() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  return (
+    <div className="app">
+      <Navbar />
+      <Terms />
+      <Footer />
+    </div>
+  );
+}
+
 export default function App() {
   const location = useLocation();
   if (location.pathname === '/' && location.hash === '#privacy') {
     return <Navigate to="/privacy" replace />;
+  }
+  if (location.pathname === '/' && location.hash === '#terms') {
+    return <Navigate to="/terms" replace />;
   }
 
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/privacy" element={<PrivacyPage />} />
+      <Route path="/terms" element={<TermsPage />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
