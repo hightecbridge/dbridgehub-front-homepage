@@ -773,6 +773,14 @@ body {
   font-weight: 700;
 }
 
+.footer-company a {
+  color: var(--text);
+  text-decoration: none;
+}
+.footer-company a:hover {
+  color: var(--cyan);
+}
+
 /* ─── Privacy ─── */
 .privacy-section {
   padding: 4rem 0 5rem;
