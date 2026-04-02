@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Routes, Route, Navigate, useNavigate, useLocation, Link } from 'react-router-dom';
 import './App.css';
 
 const NAV_LINKS = [
-  { label: '서비스', href: '#services' },
-  { label: '고객사례', href: '#cases' },
-  { label: '문의', href: '#contact' },
-  { label: '개인정보처리방침', href: '#privacy' },
+  { label: '서비스', hash: 'services' },
+  { label: '고객사례', hash: 'cases' },
+  { label: '문의', hash: 'contact' },
+  { label: '개인정보처리방침', path: '/privacy' },
 ];
 
 const SERVICES = [
@@ -75,6 +76,8 @@ function useInView(threshold = 0.15) {
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 40);
@@ -82,38 +85,57 @@ function Navbar() {
     return () => window.removeEventListener('scroll', handler);
   }, []);
 
-  const handleNav = (href) => {
+  const handleNav = (link) => {
     setMenuOpen(false);
-    document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
+    if (link.path) {
+      navigate(link.path);
+      return;
+    }
+    if (link.hash) {
+      if (location.pathname !== '/') {
+        navigate({ pathname: '/', hash: `#${link.hash}` });
+      } else {
+        document.getElementById(link.hash)?.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
   };
 
   return (
     <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <div className="nav-inner">
-        <a className="nav-logo" href="#top" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+        <Link
+          className="nav-logo"
+          to="/"
+          onClick={(e) => {
+            if (location.pathname === '/') {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+          }}
+        >
           <span className="logo-mark">DBH</span>
           <span className="logo-text">디브릿지허브</span>
-        </a>
+        </Link>
         <ul className="nav-links">
           {NAV_LINKS.map(l => (
             <li key={l.label}>
-              <button onClick={() => handleNav(l.href)}>{l.label}</button>
+              <button type="button" onClick={() => handleNav(l)}>{l.label}</button>
             </li>
           ))}
         </ul>
-        <a href="#contact" className="nav-cta" onClick={(e) => { e.preventDefault(); handleNav('#contact'); }}>
+        <a href="/#contact" className="nav-cta" onClick={(e) => { e.preventDefault(); handleNav({ hash: 'contact' }); }}>
           무료 상담
         </a>
-        <button className={`hamburger ${menuOpen ? 'open' : ''}`} onClick={() => setMenuOpen(!menuOpen)} aria-label="메뉴">
+        <button type="button" className={`hamburger ${menuOpen ? 'open' : ''}`} onClick={() => setMenuOpen(!menuOpen)} aria-label="메뉴">
           <span /><span /><span />
         </button>
       </div>
       {menuOpen && (
         <div className="mobile-menu">
           {NAV_LINKS.map(l => (
-            <button key={l.label} onClick={() => handleNav(l.href)}>{l.label}</button>
+            <button type="button" key={l.label} onClick={() => handleNav(l)}>{l.label}</button>
           ))}
-          <button className="mobile-cta" onClick={() => handleNav('#contact')}>무료 상담 신청</button>
+          <button type="button" className="mobile-cta" onClick={() => handleNav({ hash: 'contact' })}>무료 상담 신청</button>
         </div>
       )}
     </nav>
@@ -364,12 +386,33 @@ function Privacy() {
 
           <h3>3. 개인정보의 보유 및 이용 기간</h3>
           <p>
-            회사는 이용자의 개인정보를 이용 목적 달성을 위해 필요한 기간 동안만 보유·이용하며, 관련 법령에서 별도의 보존 기간을 정하고 있는 경우에는 그에 따릅니다. 구체적인 보유 기간은 개별 계약 또는 안내를 통해 별도로 고지할 수 있습니다.
+            회사는 개인정보 수집 및 이용 목적이 달성된 후에는 해당 정보를 지체 없이 파기합니다.
+            단, 관계 법령에 따라 보존할 필요가 있는 경우 아래와 같이 일정 기간 보관합니다.
           </p>
+          <ul>
+            <li>계약 또는 청약철회 등에 관한 기록: 5년</li>
+            <li>대금 결제 및 재화 등의 공급에 관한 기록: 5년</li>
+            <li>소비자 불만 또는 분쟁 처리에 관한 기록: 3년</li>
+          </ul>
 
           <h3>4. 개인정보의 제3자 제공 및 처리 위탁</h3>
           <p>
-            회사는 이용자의 동의 없이 개인정보를 외부에 제공하지 않습니다. 향후 서비스 제공을 위해 이메일 발송·시스템 운영 등을 외부 전문 업체에 위탁할 필요가 있는 경우, 관련 법령에 따른 동의 절차 및 안전한 관리 조치를 마련한 뒤 위탁 여부와 내용을 안내하겠습니다.
+            회사는 이용자의 개인정보를 원칙적으로 외부에 제공하지 않습니다. 다만, 다음의 경우에는 예외로 합니다.
+          </p>
+          <ul>
+            <li>이용자가 사전에 동의한 경우</li>
+            <li>법령의 규정에 의거하거나, 수사 목적으로 법령에 정해진 절차와 방법에 따라 요구가 있는 경우</li>
+          </ul>
+
+          <p>
+            회사는 원활한 서비스 제공을 위해 아래와 같이 개인정보 처리 업무를 위탁하고 있습니다.
+          </p>
+          <ul>
+            <li>AWS (Amazon Web Services): 서버 및 데이터 저장</li>
+            <li>문자 발송 서비스 업체: 문자 발송 처리</li>
+          </ul>
+          <p>
+            회사는 위탁 계약 시 개인정보 보호 관련 법령을 준수하도록 관리하고 있습니다.
           </p>
 
           <h3>5. 이용자의 권리와 행사 방법</h3>
@@ -389,14 +432,22 @@ function Privacy() {
             <li>정기적인 보안 점검 및 내부 관리 계획 수립</li>
           </ul>
 
-          <h3>7. 개인정보 처리방침의 변경</h3>
+          <h3>7. 개인정보 보호책임자</h3>
+          <p>회사는 개인정보 처리에 관한 업무를 총괄해서 책임지고, 이용자의 불만 처리 및 피해 구제 등을 위하여 아래와 같이 개인정보 보호책임자를 지정하고 있습니다.</p>
+          <ul>
+            <li>개인정보 보호책임자 성명: 장경수</li>
+            <li>연락처: 010-5029-9455</li>
+            <li>이메일: apporty@gmail.com</li>
+          </ul>
+
+          <h3>8. 개인정보 처리방침의 변경</h3>
           <p>
             본 개인정보 처리방침은 관련 법령, 회사 정책, 서비스 내용의 변경에 따라 수정될 수 있으며, 중요한 변경 사항이 있을 경우 홈페이지를 통해 공지합니다.
           </p>
 
           <p className="privacy-meta">
             시행일: 2025-01-01<br />
-            최종 수정일: 2025-01-01
+            최종 수정일: 2026-04-02
           </p>
         </div>
       </div>
@@ -497,46 +548,49 @@ function Footer() {
         <div className="footer-links">
           <div className="footer-col">
             <strong>서비스</strong>
-            <a href="#services">서비스 통합 구현</a>
-            <a href="#services">API 게이트웨이</a>
-            <a href="#services">실시간 분석</a>
-            <a href="#services">결제 API 서비스</a>
+            <Link to="/#services">서비스 통합 구현</Link>
+            <Link to="/#services">API 게이트웨이</Link>
+            <Link to="/#services">실시간 분석</Link>
+            <Link to="/#services">결제 API 서비스</Link>
           </div>
           <div className="footer-col">
             <strong>회사</strong>
-            <a href="#cases">고객 사례</a>
-            <a href="#tech">기술 소개</a>
+            <Link to="/#cases">고객 사례</Link>
+            <Link to="/#tech">기술 소개</Link>
           </div>
           <div className="footer-col">
             <strong>지원</strong>
-            <a href="#contact">문의하기</a>
-            <a href="#contact">기술 지원</a>
+            <Link to="/#contact">문의하기</Link>
+            <Link to="/#contact">기술 지원</Link>
           </div>
         </div>
       </div>
       <div className="footer-bottom">
         <p>© 2025 디브릿지허브. All rights reserved.</p>
         <div className="footer-legal">
-          <a href="#privacy">개인정보처리방침</a>
-          <a href="#top">이용약관</a>
+          <Link to="/privacy">개인정보처리방침</Link>
+          <Link to="/#top">이용약관</Link>
         </div>
       </div>
     </footer>
   );
 }
 
-export default function App() {
+function HomePage() {
+  const location = useLocation();
+
   useEffect(() => {
-    if (window.location.hash) {
-      const target = document.querySelector(window.location.hash);
-      if (target) {
-        // 초기 렌더가 끝난 뒤 스크롤되도록 약간 지연
-        setTimeout(() => {
-          target.scrollIntoView({ behavior: 'smooth' });
-        }, 0);
-      }
+    const hash = location.hash;
+    if (!hash || hash === '#') return;
+    const id = hash.replace(/^#/, '');
+    const target = document.getElementById(id);
+    if (target) {
+      const t = setTimeout(() => {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }, 0);
+      return () => clearTimeout(t);
     }
-  }, []);
+  }, [location.hash]);
 
   return (
     <div className="app">
@@ -546,9 +600,37 @@ export default function App() {
       <Services />
       <Tech />
       <Cases />
-      <Privacy />
       <Contact />
       <Footer />
     </div>
+  );
+}
+
+function PrivacyPage() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  return (
+    <div className="app">
+      <Navbar />
+      <Privacy />
+      <Footer />
+    </div>
+  );
+}
+
+export default function App() {
+  const location = useLocation();
+  if (location.pathname === '/' && location.hash === '#privacy') {
+    return <Navigate to="/privacy" replace />;
+  }
+
+  return (
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/privacy" element={<PrivacyPage />} />
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
   );
 }
