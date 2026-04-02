@@ -620,6 +620,7 @@ function Footer() {
           <div className="footer-company-row footer-company-row--emph"><strong>상호명</strong>: 디브릿지허브</div>
           <div className="footer-company-row footer-company-row--emph"><strong>대표자</strong>: 장경수</div>
           <div className="footer-company-row footer-company-row--emph"><strong>사업자등록번호</strong>: 599-26-02056</div>
+          <div className="footer-company-row footer-company-row--emph"><strong>통신판매업신고번호</strong>: 신고 예정</div>
           <div className="footer-company-row footer-company-row--emph"><strong>주소</strong>: 서울특별시 동대문구 장안벗꽃로5길, 19 103동 2107호</div>
           <div className="footer-company-row footer-company-row--emph"><strong>이메일</strong>: apporty@gmail.com</div>
           <div className="footer-company-row footer-company-row--emph"><strong>전화번호</strong>: 010-5029-9455</div>
@@ -716,7 +717,7 @@ function Refund() {
 
           <h3>3. 환불 절차</h3>
           <ul>
-            <li>고객센터 이메일을 통해 요청</li>
+            <li>고객센터 이메일(apporty@gmail.com) 또는 전화(010-5029-9455)를 통해 요청</li>
             <li>확인 후 7일 이내 처리</li>
           </ul>
         </div>
