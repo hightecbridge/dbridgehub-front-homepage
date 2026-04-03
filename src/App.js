@@ -4,59 +4,43 @@ import './App.css';
 
 const NAV_LINKS = [
   { label: '서비스', hash: 'services' },
-  { label: '고객사례', hash: 'cases' },
   { label: '개인정보처리방침', path: '/privacy' },
 ];
 
 const SERVICES = [
   {
-    icon: '⬡',
-    title: '서비스 통합 구현',
-    desc: '여러 SaaS·레거시 시스템을 하나의 흐름으로 연결하는 엔드투엔드 서비스 통합을 제공합니다.',
-    tag: 'Integration',
-  },
-  {
-    icon: '◈',
-    title: 'API 게이트웨이',
-    desc: '레거시 시스템부터 클라우드 서비스까지 단일 API 허브로 통합 연결합니다.',
-    tag: 'Integration',
-  },
-  {
-    icon: '◉',
-    title: '실시간 분석',
-    desc: '스트리밍 데이터를 즉시 분석하여 인사이트를 도출하는 실시간 대시보드를 제공합니다.',
-    tag: 'Analytics',
-  },
-  {
     icon: '₩',
-    title: '결제 API 서비스',
-    desc: '국내외 PG사와 연동되는 통합 결제 API로 카드·계좌이체·간편결제를 한 번에 지원합니다.',
-    tag: 'Payment',
+    title: '수강료 청구 및 결제 관리',
+    desc: '청구·수납·납부 현황을 한곳에서 관리하고 결제 흐름을 정리합니다.',
+    tag: 'Billing',
   },
-];
-
-const STATS = [
-  { value: '안정적', label: '서비스 운영' },
-  { value: '신속한', label: '요청 처리' },
-  { value: '대량 처리', label: '데이터 흐름 지원' },
+  {
+    icon: '◆',
+    title: '미납자 자동 관리',
+    desc: '미납 내역을 파악하고 안내·독촉까지 체계적으로 관리합니다.',
+    tag: 'Auto',
+  },
+  {
+    icon: '📣',
+    title: '학부모 공지 및 알림 발송',
+    desc: '공지·알림을 빠르게 전달하고 소통 이력을 남깁니다.',
+    tag: 'Notice',
+  },
+  {
+    icon: '📊',
+    title: '학원 운영 데이터 관리',
+    desc: '수강·매출 등 운영 지표를 모아 보고 의사결정을 돕습니다.',
+    tag: 'Data',
+  },
+  {
+    icon: '📱',
+    title: '모바일 앱 연동 지원',
+    desc: '모바일 환경에서도 주요 업무와 알림을 활용할 수 있습니다.',
+    tag: 'Mobile',
+  },
 ];
 
 const SOLUTIONS = [];
-
-const CASES = [
-  {
-    industry: '금융',
-    title: '실시간 리스크 모니터링',
-    desc: '금융사의 거래 데이터를 근실시간으로 분석하여 이상 거래를 빠르게 탐지할 수 있도록 지원',
-    metric: '이상 징후 대응 속도 향상',
-  },
-  {
-    industry: '커머스',
-    title: '개인화 추천 엔진',
-    desc: '구매 패턴 데이터를 통합 분석하여 개인화 추천 품질을 높이는 추천 환경을 제공합니다',
-    metric: '전환율 개선에 기여',
-  },
-];
 
 function useInView(threshold = 0.15) {
   const ref = useRef(null);
@@ -147,20 +131,18 @@ function Hero() {
     <section className="hero" id="top" ref={ref}>
       <div className="hero-grid-bg" />
       <div className={`hero-content ${inView ? 'visible' : ''}`}>
-        <div className="hero-badge">Enterprise Data Platform</div>
+        <div className="hero-badge">Academy SaaS</div>
         <h1 className="hero-title">
-          서비스의 흐름을<br />
-          <span className="hero-accent">하나로 연결</span>합니다
+          학원 운영과 수납을 <span className="hero-accent">한 번에</span> 관리하세요
         </h1>
         <p className="hero-desc">
-          분산된 데이터 소스를 통합하고, 실시간으로 분석하며,<br className="pc-only" />
-          비즈니스 인사이트를 즉시 전달하는 엔터프라이즈 데이터 플랫폼
+          디브릿지허브는 학원을 위한 통합 관리 SaaS 플랫폼입니다.
+        </p>
+        <p className="hero-desc hero-desc-sub">
+          수강료 청구, 결제 관리, 학부모 소통까지 하나로 해결하세요.
         </p>
         <div className="hero-actions">
-          <button className="btn-primary" onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}>
-            무료 데모 신청
-          </button>
-          <button className="btn-secondary" onClick={() => document.querySelector('#services')?.scrollIntoView({ behavior: 'smooth' })}>
+          <button type="button" className="btn-secondary" onClick={() => document.querySelector('#services')?.scrollIntoView({ behavior: 'smooth' })}>
             서비스 보기 →
           </button>
         </div>
@@ -247,22 +229,6 @@ function HeroVisual() {
   );
 }
 
-function Stats() {
-  const [ref, inView] = useInView();
-  return (
-    <section className="stats-section" ref={ref}>
-      <div className="stats-inner">
-        {STATS.map((s, i) => (
-          <div key={i} className={`stat-item ${inView ? 'visible' : ''}`} style={{ animationDelay: `${i * 0.1}s` }}>
-            <div className="stat-value">{s.value}</div>
-            <div className="stat-label">{s.label}</div>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
 function Services() {
   const [ref, inView] = useInView();
   return (
@@ -271,7 +237,17 @@ function Services() {
         <div className={`section-header ${inView ? 'visible' : ''}`}>
           <span className="section-tag">SERVICES</span>
           <h2 className="section-title">핵심 서비스</h2>
-          <p className="section-desc">데이터의 수집부터 활용까지, 전체 파이프라인을 커버하는 통합 솔루션</p>
+          <p className="section-desc">
+            디브릿지허브는 학원 운영을 효율적으로 관리할 수 있도록 돕는 SaaS(Software as a Service) 플랫폼입니다.
+          </p>
+          <p className="section-desc">
+            학원은 디브릿지허브를 통해 수강료 청구, 결제 관리, 공지 발송 등을 간편하게 수행할 수 있으며,
+            <br />
+            학부모와의 소통을 더욱 효율적으로 관리할 수 있습니다.
+          </p>
+          <p className="section-desc">
+            본 서비스는 소프트웨어 이용 서비스이며, 학원 사업자를 대상으로 월 이용요금을 부과합니다.
+          </p>
         </div>
         <div className="services-grid">
           {SERVICES.map((s, i) => (
@@ -282,6 +258,54 @@ function Services() {
               <p className="service-desc">{s.desc}</p>
             </div>
           ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Pricing() {
+  const [ref, inView] = useInView();
+  return (
+    <section className="pricing-section" id="pricing" ref={ref}>
+      <div className="section-inner">
+        <div className={`section-header ${inView ? 'visible' : ''}`}>
+          <span className="section-tag">PRICING</span>
+          <h2 className="section-title">요금 안내</h2>
+          <p className="section-desc">
+            디브릿지허브는 학원 운영을 위한 SaaS 서비스로,
+            <br />
+            월 이용요금 기반으로 제공됩니다.
+          </p>
+          <p className="section-desc">
+            요금은 학원 규모 및 이용 기능에 따라 달라질 수 있으며,
+            <br />
+            자세한 내용은 문의를 통해 안내드립니다.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function PaymentGuide() {
+  const [ref, inView] = useInView();
+  return (
+    <section className="payment-guide-section" id="payment" ref={ref}>
+      <div className="section-inner">
+        <div className={`section-header ${inView ? 'visible' : ''}`}>
+          <span className="section-tag">PAYMENT</span>
+          <h2 className="section-title">결제 안내</h2>
+          <p className="section-desc">
+            디브릿지허브는 소프트웨어 이용 서비스로서,
+            <br />
+            학원 사업자를 대상으로 월 이용요금을 청구합니다.
+          </p>
+          <p className="section-desc">
+            학부모의 수강료 결제는 각 학원이 계약한 PG를 통해 직접 이루어지며,
+            <br />
+            디브릿지허브는 해당 결제 대금을 수취하거나 중개하지 않습니다.
+          </p>
         </div>
       </div>
     </section>
@@ -322,31 +346,6 @@ function Tech() {
               <span className="badge-label">SECURE</span>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Cases() {
-  const [ref, inView] = useInView();
-  return (
-    <section className="cases-section" id="cases" ref={ref}>
-      <div className="section-inner">
-        <div className={`section-header ${inView ? 'visible' : ''}`}>
-          <span className="section-tag">CASE STUDIES</span>
-          <h2 className="section-title">고객 성공 사례</h2>
-          <p className="section-desc">다양한 산업에서 입증된 디브릿지허브의 성과</p>
-        </div>
-        <div className="cases-grid">
-          {CASES.map((c, i) => (
-            <div key={i} className={`case-card ${inView ? 'visible' : ''}`} style={{ animationDelay: `${i * 0.15}s` }}>
-              <div className="case-industry">{c.industry}</div>
-              <h3 className="case-title">{c.title}</h3>
-              <p className="case-desc">{c.desc}</p>
-              <div className="case-metric">{c.metric}</div>
-            </div>
-          ))}
         </div>
       </div>
     </section>
@@ -452,8 +451,8 @@ function Privacy() {
           <h3>1. 수집하는 개인정보의 항목 및 수집 방법</h3>
           <p>회사는 서비스 이용 과정에서 다음과 같은 개인정보를 수집할 수 있습니다.</p>
           <ul>
-            <li>필수 항목: 담당자명, 회사명, 이메일 주소, 연락처</li>
-            <li>선택 항목: 문의 내용</li>
+            <li>필수 항목: 담당자명, 연락처</li>
+            <li>선택 항목: 학원명, 문의 내용</li>
             <li>자동 수집 항목: IP 주소, 쿠키, 접속 로그</li>
           </ul>
           <p>개인정보는 홈페이지 문의, 이메일, 전화 등을 통해 수집될 수 있습니다.</p>
@@ -557,14 +556,56 @@ function Privacy() {
   );
 }
 
+function homepageConsultSubmitUrl() {
+  const base = process.env.REACT_APP_API_BASE_URL;
+  if (base) return `${base.replace(/\/$/, '')}/homepage/consults`;
+  if (process.env.NODE_ENV === 'development') return 'http://localhost:8080/api/homepage/consults';
+  return '/api/homepage/consults';
+}
+
 function Contact() {
   const [ref, inView] = useInView();
-  const [form, setForm] = useState({ name: '', company: '', email: '', message: '' });
+  const [form, setForm] = useState({ name: '', phone: '', academyName: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(null);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    setSubmitting(true);
+    setSubmitError(null);
+    const messageParts = [];
+    if (form.academyName.trim()) messageParts.push(`학원명: ${form.academyName.trim()}`);
+    if (form.message.trim()) messageParts.push(form.message.trim());
+    const combinedMessage = messageParts.length ? messageParts.join('\n\n') : undefined;
+    const body = {
+      name: form.name.trim(),
+      phone: form.phone.trim(),
+      message: combinedMessage,
+      source: 'dbridgehub-homepage',
+    };
+    try {
+      const res = await fetch(homepageConsultSubmitUrl(), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(body),
+      });
+      let data = {};
+      try {
+        data = await res.json();
+      } catch (_) {
+        /* non-JSON */
+      }
+      if (!res.ok || data.success === false) {
+        setSubmitError(data.message || `접수에 실패했습니다. (${res.status})`);
+        return;
+      }
+      setSubmitted(true);
+    } catch (err) {
+      setSubmitError(err.message || '네트워크 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -572,8 +613,10 @@ function Contact() {
       <div className="section-inner">
         <div className={`section-header ${inView ? 'visible' : ''}`}>
           <span className="section-tag">CONTACT</span>
-          <h2 className="section-title">무료 상담 신청</h2>
-          <p className="section-desc">전문 컨설턴트가 귀사에 최적화된 데이터 솔루션을 제안해 드립니다</p>
+          <h2 className="section-title">서비스 도입이 필요하신가요?</h2>
+          <p className="section-desc">
+            간단한 상담을 통해 학원에 맞는 최적의 운영 방안을 안내드립니다.
+          </p>
         </div>
         <div className={`contact-wrapper ${inView ? 'visible' : ''}`}>
           {submitted ? (
@@ -588,25 +631,29 @@ function Contact() {
                 <div className="form-group">
                   <label>담당자명 *</label>
                   <input type="text" required placeholder="홍길동" value={form.name}
-                    onChange={e => setForm({ ...form, name: e.target.value })} />
+                    onChange={e => setForm({ ...form, name: e.target.value })} disabled={submitting} />
                 </div>
                 <div className="form-group">
-                  <label>회사명 *</label>
-                  <input type="text" required placeholder="(주)회사명" value={form.company}
-                    onChange={e => setForm({ ...form, company: e.target.value })} />
+                  <label>연락처 *</label>
+                  <input type="tel" required placeholder="010-0000-0000" value={form.phone}
+                    onChange={e => setForm({ ...form, phone: e.target.value })} disabled={submitting} />
                 </div>
               </div>
               <div className="form-group">
-                <label>이메일 *</label>
-                <input type="email" required placeholder="email@company.com" value={form.email}
-                  onChange={e => setForm({ ...form, email: e.target.value })} />
+                <label>학원명</label>
+                <input type="text" placeholder="○○학원" value={form.academyName}
+                  onChange={e => setForm({ ...form, academyName: e.target.value })} disabled={submitting} />
               </div>
               <div className="form-group">
                 <label>문의 내용</label>
                 <textarea rows="4" placeholder="도입을 검토 중인 서비스나 궁금한 점을 입력해 주세요."
-                  value={form.message} onChange={e => setForm({ ...form, message: e.target.value })} />
+                  value={form.message} onChange={e => setForm({ ...form, message: e.target.value })}
+                  disabled={submitting} />
               </div>
-              <button type="submit" className="btn-submit">무료 상담 신청하기</button>
+              {submitError ? <p className="contact-form-error" role="alert">{submitError}</p> : null}
+              <button type="submit" className="btn-submit" disabled={submitting}>
+                {submitting ? '접수 중…' : '무료 상담 신청하기'}
+              </button>
             </form>
           )}
           <div className="contact-info">
@@ -657,17 +704,6 @@ function Footer() {
           <div className="footer-company-row footer-company-row--emph"><strong>이메일</strong>: apporty@gmail.com</div>
           <div className="footer-company-row footer-company-row--emph"><strong>전화번호</strong>: 010-5029-9455</div>
           <div className="footer-company-row footer-company-row--emph"><strong>호스팅 제공자</strong>: AWS</div>
-          <div className="footer-company-row footer-company-row--emph">
-            <strong>사업자정보 확인</strong>:
-            <a
-              href="https://www.ftc.go.kr/bizCommPop.do?wrkr_no=599-26-02056"
-              target="_blank"
-              rel="noreferrer"
-              style={{ marginLeft: 6 }}
-            >
-              https://www.ftc.go.kr/bizCommPop.do?wrkr_no=599-26-02056
-            </a>
-          </div>
         </div>
       </div>
     </footer>
@@ -694,10 +730,10 @@ function HomePage() {
     <div className="app">
       <Navbar />
       <Hero />
-      <Stats />
       <Services />
+      <Pricing />
+      <PaymentGuide />
       <Tech />
-      <Cases />
       <Contact />
       <Footer />
     </div>
@@ -745,6 +781,16 @@ function Refund() {
           <h1>환불 정책</h1>
           <p>서비스 이용과 관련된 환불 절차 및 규정을 안내합니다.</p>
           <p>회사는 전자상거래법 등 관련 법령에 따라 다음과 같은 환불 정책을 적용합니다.</p>
+
+          <p>디브릿지허브는 SaaS 서비스로서 월 이용요금 기반으로 제공됩니다.</p>
+          <p>
+            결제 후 서비스가 개시된 경우,<br />
+            이미 사용된 기간에 대해서는 환불이 제한될 수 있습니다.
+          </p>
+          <p>
+            단, 서비스 장애 또는 회사의 귀책 사유로 정상적인 서비스 이용이 불가능한 경우,<br />
+            관련 법령에 따라 환불이 진행될 수 있습니다.
+          </p>
 
           <h3>1. 환불 가능 기간</h3>
           <p>결제일로부터 7일 이내 청약철회가 가능합니다.</p>
