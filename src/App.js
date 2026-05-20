@@ -266,16 +266,6 @@ function Services() {
 
 function Pricing() {
   const [ref, inView] = useInView();
-  const [pgNoticeOpen, setPgNoticeOpen] = useState(false);
-
-  useEffect(() => {
-    if (!pgNoticeOpen) return undefined;
-    const onKey = (e) => {
-      if (e.key === 'Escape') setPgNoticeOpen(false);
-    };
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, [pgNoticeOpen]);
 
   return (
     <section className="pricing-section" id="pricing" ref={ref}>
@@ -294,52 +284,7 @@ function Pricing() {
             자세한 내용은 문의를 통해 안내드립니다.
           </p>
         </div>
-        <div className={`pricing-plans ${inView ? 'visible' : ''}`}>
-          <h3 className="pricing-subtitle">서비스 요금</h3>
-          <div className="pricing-card pricing-card--basic">
-            <div className="pricing-tier">[Basic]</div>
-            <p className="pricing-price">
-              월 <span className="pricing-amount">19,000</span>원
-            </p>
-            <ul className="pricing-features">
-              <li>학원관리 시스템 제공</li>
-              <li>학부모 앱 포함</li>
-            </ul>
-            <button
-              type="button"
-              className="pricing-pay-btn"
-              onClick={() => setPgNoticeOpen(true)}
-            >
-              결제하기
-            </button>
-          </div>
-        </div>
       </div>
-      {pgNoticeOpen ? (
-        <div
-          className="pricing-modal-backdrop"
-          role="presentation"
-          onClick={() => setPgNoticeOpen(false)}
-        >
-          <div
-            className="pricing-modal"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="pricing-pg-notice-title"
-            onClick={e => e.stopPropagation()}
-          >
-            <h4 id="pricing-pg-notice-title" className="pricing-modal-title">안내</h4>
-            <p className="pricing-modal-body">
-              PG사 연동을 신청 중입니다.
-              <br />
-              결제 기능은 연동이 완료된 후 이용하실 수 있습니다.
-            </p>
-            <button type="button" className="pricing-modal-close" onClick={() => setPgNoticeOpen(false)}>
-              확인
-            </button>
-          </div>
-        </div>
-      ) : null}
     </section>
   );
 }
@@ -755,7 +700,7 @@ function Footer() {
           <div className="footer-company-row footer-company-row--emph"><strong>상호명</strong>: 디브릿지허브</div>
           <div className="footer-company-row footer-company-row--emph"><strong>대표자</strong>: 장경수</div>
           <div className="footer-company-row footer-company-row--emph"><strong>사업자등록번호</strong>: 599-26-02056</div>
-          <div className="footer-company-row footer-company-row--emph"><strong>통신판매업신고번호</strong>: 신고 예정</div>
+          <div className="footer-company-row footer-company-row--emph"><strong>통신판매업신고번호</strong>: 제2026-서울동대문-0901호</div>
           <div className="footer-company-row footer-company-row--emph"><strong>주소</strong>: 서울특별시 동대문구 장안벗꽃로5길, 19 103동 2107호</div>
           <div className="footer-company-row footer-company-row--emph"><strong>이메일</strong>: apporty@gmail.com</div>
           <div className="footer-company-row footer-company-row--emph"><strong>전화번호</strong>: 010-5029-9455</div>
