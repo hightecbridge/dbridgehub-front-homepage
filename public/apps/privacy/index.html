@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>개인정보처리방침 | 디브릿지허브</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg: #0A0F1C;
+  --surface: #111827;
+  --border: #1F2D45;
+  --accent: #3B82F6;
+  --accent2: #10B981;
+  --text-primary: #F1F5F9;
+  --text-secondary: #94A3B8;
+  --text-muted: #475569;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 300;
+  line-height: 1.8;
+  min-height: 100vh;
+}
+
+/* 배경 장식 */
+body::before {
+  content: '';
+  position: fixed;
+  top: -30%;
+  right: -20%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 헤더 */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(10,15,28,0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-family: 'DM Mono', monospace;
+  font-size: 15px;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+}
+
+.logo span { color: var(--text-secondary); }
+
+.updated {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-family: 'DM Mono', monospace;
+}
+
+/* 메인 */
+main {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 4rem 2rem 6rem;
+}
+
+/* 히어로 */
+.hero {
+  margin-bottom: 4rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.hero-tag {
+  display: inline-block;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--accent);
+  background: rgba(59,130,246,0.1);
+  border: 1px solid rgba(59,130,246,0.2);
+  border-radius: 4px;
+  padding: 4px 12px;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #F1F5F9 0%, #94A3B8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-sub {
+  color: var(--text-secondary);
+  font-size: 15px;
+  max-width: 540px;
+}
+
+/* 앱 목록 */
+.app-list {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+.app-tag {
+  font-size: 12px;
+  padding: 4px 12px;
+  border-radius: 99px;
+  background: rgba(16,185,129,0.1);
+  border: 1px solid rgba(16,185,129,0.2);
+  color: var(--accent2);
+  font-family: 'DM Mono', monospace;
+}
+
+/* 섹션 */
+section {
+  margin-bottom: 3rem;
+}
+
+.section-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 0.15em;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+
+p {
+  color: var(--text-secondary);
+  font-size: 14.5px;
+  margin-bottom: 1rem;
+}
+
+/* 카드 */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+}
+
+.card-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.card-title::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+ul {
+  list-style: none;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+ul li {
+  padding: 5px 0;
+  padding-left: 16px;
+  position: relative;
+}
+
+ul li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+/* 제3자 표 */
+.third-party {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin-top: 1rem;
+}
+
+.third-party th {
+  background: rgba(59,130,246,0.08);
+  color: var(--text-secondary);
+  font-weight: 500;
+  padding: 10px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.third-party td {
+  padding: 10px 16px;
+  border-bottom: 1px solid rgba(31,45,69,0.5);
+  color: var(--text-secondary);
+  vertical-align: top;
+}
+
+.third-party tr:last-child td { border-bottom: none; }
+
+.third-party a {
+  color: var(--accent);
+  text-decoration: none;
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+}
+
+.third-party a:hover { text-decoration: underline; }
+
+/* 연락처 카드 */
+.contact-card {
+  background: linear-gradient(135deg, rgba(59,130,246,0.08), rgba(16,185,129,0.05));
+  border: 1px solid rgba(59,130,246,0.2);
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.contact-info p { margin: 0; color: var(--text-secondary); font-size: 14px; }
+.contact-info strong { color: var(--text-primary); font-weight: 500; }
+
+.contact-email {
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  color: var(--accent);
+  text-decoration: none;
+  background: rgba(59,130,246,0.1);
+  border: 1px solid rgba(59,130,246,0.2);
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.contact-email:hover { background: rgba(59,130,246,0.2); }
+
+/* 푸터 */
+footer {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 2rem;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 12px;
+  font-family: 'DM Mono', monospace;
+}
+
+/* 반응형 */
+@media (max-width: 600px) {
+  header { padding: 0.75rem 1rem; }
+  main { padding: 2.5rem 1.25rem 4rem; }
+  .contact-card { flex-direction: column; }
+  .third-party th, .third-party td { padding: 8px 10px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">DBridgeHub<span>.privacy</span></div>
+  <div class="updated">최종 수정: 2026-05-26</div>
+</header>
+
+<main>
+
+  <!-- 히어로 -->
+  <div class="hero">
+    <div class="hero-tag">Privacy Policy</div>
+    <h1>개인정보<br/>처리방침</h1>
+    <p class="hero-sub">
+      디브릿지허브(이하 "회사")는 이용자의 개인정보를 중요하게 생각하며,
+      「개인정보 보호법」 및 관련 법령을 준수합니다.
+      본 방침은 회사가 제공하는 모든 앱 서비스에 적용됩니다.
+    </p>
+    <div class="app-list">
+      <span class="app-tag">🚭 금연 타이머</span>
+      <!-- 앱 추가 시 여기에 태그 추가 -->
+    </div>
+  </div>
+
+  <!-- 1. 수집하는 개인정보 -->
+  <section>
+    <div class="section-num">01</div>
+    <h2>수집하는 개인정보 항목</h2>
+    <p>회사는 서비스 제공을 위해 아래와 같은 정보를 수집할 수 있습니다.</p>
+
+    <div class="card">
+      <div class="card-title">앱 사용 중 자동 수집 정보</div>
+      <ul>
+        <li>기기 식별자 (광고 ID, Android ID)</li>
+        <li>기기 정보 (모델명, OS 버전, 화면 해상도)</li>
+        <li>앱 사용 로그 (실행 시간, 기능 사용 이력)</li>
+        <li>네트워크 정보 (IP 주소, 통신사)</li>
+        <li>광고 상호작용 데이터 (노출, 클릭)</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title">이용자가 직접 입력하는 정보 (금연 타이머)</div>
+      <ul>
+        <li>금연 시작 날짜 및 시간 (기기 내부 저장)</li>
+        <li>하루 평균 흡연량, 담배 가격 (기기 내부 저장)</li>
+        <li>※ 위 정보는 외부 서버로 전송되지 않습니다</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 2. 수집 목적 -->
+  <section>
+    <div class="section-num">02</div>
+    <h2>개인정보 수집 및 이용 목적</h2>
+    <div class="card">
+      <ul>
+        <li>앱 서비스 제공 및 기능 운영</li>
+        <li>광고 서비스 제공 (Google AdMob)</li>
+        <li>서비스 품질 개선 및 통계 분석</li>
+        <li>오류 및 버그 수정</li>
+        <li>법령상 의무 이행</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 3. 제3자 제공 -->
+  <section>
+    <div class="section-num">03</div>
+    <h2>제3자 서비스 및 광고</h2>
+    <p>
+      앱 내 광고 서비스 운영을 위해 아래 제3자 서비스를 사용합니다.
+      각 서비스는 자체 개인정보처리방침에 따라 데이터를 처리합니다.
+    </p>
+    <table class="third-party">
+      <thead>
+        <tr>
+          <th>서비스</th>
+          <th>제공 회사</th>
+          <th>목적</th>
+          <th>방침 링크</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Google AdMob</td>
+          <td>Google LLC</td>
+          <td>광고 노출 및 수익화</td>
+          <td><a href="https://policies.google.com/privacy" target="_blank">보기 →</a></td>
+        </tr>
+        <tr>
+          <td>Google Analytics</td>
+          <td>Google LLC</td>
+          <td>앱 사용 통계 분석</td>
+          <td><a href="https://policies.google.com/privacy" target="_blank">보기 →</a></td>
+        </tr>
+        <tr>
+          <td>Google Play Services</td>
+          <td>Google LLC</td>
+          <td>앱 기본 서비스</td>
+          <td><a href="https://policies.google.com/privacy" target="_blank">보기 →</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 4. 보유 기간 -->
+  <section>
+    <div class="section-num">04</div>
+    <h2>개인정보 보유 및 이용 기간</h2>
+    <div class="card">
+      <div class="card-title">기기 내 저장 데이터</div>
+      <ul>
+        <li>앱 삭제 시 즉시 삭제됩니다</li>
+        <li>이용자가 앱 내에서 직접 삭제 가능합니다</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">광고 관련 데이터</div>
+      <ul>
+        <li>Google의 데이터 보유 정책에 따릅니다</li>
+        <li>이용자는 기기 설정에서 광고 ID 재설정 가능합니다</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 5. 이용자 권리 -->
+  <section>
+    <div class="section-num">05</div>
+    <h2>이용자의 권리</h2>
+    <p>이용자는 언제든지 아래 권리를 행사할 수 있습니다.</p>
+    <div class="card">
+      <ul>
+        <li>개인정보 열람, 정정, 삭제 요청</li>
+        <li>개인정보 처리 정지 요청</li>
+        <li>광고 맞춤 설정 거부 (기기 설정 → 광고 → 광고 ID 재설정)</li>
+        <li>앱 삭제를 통한 모든 로컬 데이터 삭제</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 6. 아동 보호 -->
+  <section>
+    <div class="section-num">06</div>
+    <h2>아동 개인정보 보호</h2>
+    <p>
+      회사의 서비스는 만 14세 미만 아동을 대상으로 하지 않습니다.
+      만 14세 미만 아동의 개인정보를 의도적으로 수집하지 않으며,
+      해당 사실이 확인될 경우 즉시 삭제 조치합니다.
+    </p>
+  </section>
+
+  <!-- 7. 보안 -->
+  <section>
+    <div class="section-num">07</div>
+    <h2>개인정보 보호 조치</h2>
+    <div class="card">
+      <ul>
+        <li>이용자가 입력한 데이터는 기기 내부에만 저장 (외부 전송 없음)</li>
+        <li>앱 삭제 시 모든 로컬 데이터 완전 삭제</li>
+        <li>제3자 서비스는 각사의 보안 정책에 따라 관리</li>
+        <li>최신 Android 보안 표준 준수</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 8. 방침 변경 -->
+  <section>
+    <div class="section-num">08</div>
+    <h2>개인정보처리방침 변경</h2>
+    <p>
+      본 방침은 법령 변경 또는 서비스 변경 시 업데이트될 수 있습니다.
+      변경 시 앱 업데이트 노트 또는 본 페이지를 통해 공지합니다.
+      중요한 변경사항은 앱 내 팝업으로 별도 안내합니다.
+    </p>
+  </section>
+
+  <!-- 9. 연락처 -->
+  <section>
+    <div class="section-num">09</div>
+    <h2>개인정보 보호 책임자 및 문의</h2>
+    <div class="contact-card">
+      <div class="contact-info">
+        <p><strong>디브릿지허브 (DBridgeHub)</strong></p>
+        <p>개인정보 관련 문의는 이메일로 접수해 주세요.</p>
+        <p style="margin-top:4px;font-size:12px;color:var(--text-muted)">영업일 기준 3일 이내 답변</p>
+      </div>
+      <a href="mailto:admin@dbridgehub.com" class="contact-email">
+        admin@dbridgehub.com
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  © 2026 DBridgeHub · 시행일: 2026-05-26 · 본 방침은 회사의 모든 앱 서비스에 적용됩니다
+</footer>
+
+</body>
+</html>
