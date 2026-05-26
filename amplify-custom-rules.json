@@ -1,0 +1,20 @@
+[
+  {
+    "source": "/apps/privacy",
+    "target": "/apps/privacy/index.html",
+    "status": "200",
+    "condition": null
+  },
+  {
+    "source": "/apps/privacy/",
+    "target": "/apps/privacy/index.html",
+    "status": "200",
+    "condition": null
+  },
+  {
+    "source": "/<*>",
+    "target": "/index.html",
+    "status": "404-200",
+    "condition": null
+  }
+]

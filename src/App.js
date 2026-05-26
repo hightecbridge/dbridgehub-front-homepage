@@ -848,6 +848,13 @@ function RefundPage() {
   );
 }
 
+function AppsPrivacyStaticRedirect() {
+  useEffect(() => {
+    window.location.replace(`${window.location.origin}/apps/privacy/index.html`);
+  }, []);
+  return null;
+}
+
 export default function App() {
   const location = useLocation();
   if (location.pathname === '/' && location.hash === '#privacy') {
@@ -863,6 +870,8 @@ export default function App() {
       <Route path="/privacy" element={<PrivacyPage />} />
       <Route path="/terms" element={<TermsPage />} />
       <Route path="/refund" element={<RefundPage />} />
+      <Route path="/apps/privacy" element={<AppsPrivacyStaticRedirect />} />
+      <Route path="/apps/privacy/" element={<AppsPrivacyStaticRedirect />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
