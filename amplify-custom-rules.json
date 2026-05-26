@@ -12,6 +12,12 @@
     "condition": null
   },
   {
+    "source": "/apps/privacy/index.html",
+    "target": "/apps/privacy/index.html",
+    "status": "200",
+    "condition": null
+  },
+  {
     "source": "/<*>",
     "target": "/index.html",
     "status": "404-200",

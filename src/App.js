@@ -848,11 +848,32 @@ function RefundPage() {
   );
 }
 
-function AppsPrivacyStaticRedirect() {
+function AppsPrivacyStaticPage() {
+  const [html, setHtml] = useState(null);
+  const [error, setError] = useState(false);
+
   useEffect(() => {
-    window.location.replace(`${window.location.origin}/apps/privacy/index.html`);
+    fetch(`${process.env.PUBLIC_URL}/apps/privacy/document.txt`)
+      .then((res) => {
+        if (!res.ok) throw new Error('failed');
+        return res.text();
+      })
+      .then(setHtml)
+      .catch(() => setError(true));
   }, []);
-  return null;
+
+  if (error) {
+    return <p style={{ padding: '2rem', textAlign: 'center' }}>개인정보처리방침을 불러오지 못했습니다.</p>;
+  }
+  if (!html) return null;
+
+  return (
+    <iframe
+      title="개인정보처리방침"
+      srcDoc={html}
+      style={{ width: '100%', height: '100vh', border: 'none', display: 'block' }}
+    />
+  );
 }
 
 export default function App() {
@@ -870,8 +891,9 @@ export default function App() {
       <Route path="/privacy" element={<PrivacyPage />} />
       <Route path="/terms" element={<TermsPage />} />
       <Route path="/refund" element={<RefundPage />} />
-      <Route path="/apps/privacy" element={<AppsPrivacyStaticRedirect />} />
-      <Route path="/apps/privacy/" element={<AppsPrivacyStaticRedirect />} />
+      <Route path="/apps/privacy" element={<AppsPrivacyStaticPage />} />
+      <Route path="/apps/privacy/" element={<AppsPrivacyStaticPage />} />
+      <Route path="/apps/privacy/index.html" element={<AppsPrivacyStaticPage />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );

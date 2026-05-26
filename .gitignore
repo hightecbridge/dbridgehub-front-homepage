@@ -1,5 +1,6 @@
 node_modules/
 build/
+public/apps/privacy/document.txt
 .env
 .env.local
 .env.development.local
